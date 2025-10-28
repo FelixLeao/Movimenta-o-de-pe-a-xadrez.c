@@ -1,0 +1,116 @@
+#include <stdio.h>
+
+// ================================
+// Função recursiva: TORRE
+// ================================
+// A Torre move-se em linha reta (horizontal/vertical).
+// Aqui, simula 5 casas para a direita, imprimindo a cada chamada recursiva.
+void moverTorre(int passo, int total) {
+    if (passo > total) {
+        return; // condição de parada da recursão
+    }
+    printf("Direita (%d)\n", passo);
+    moverTorre(passo + 1, total); // chamada recursiva
+}
+
+// ================================
+// Função recursiva + loops aninhados: BISPO
+// ================================
+// O Bispo move-se na diagonal (cima e direita).
+// Aqui, usamos recursividade para controlar os passos e
+// loops aninhados (vertical e horizontal) para representar a diagonal.
+void moverBispo(int passoAtual, int total) {
+    if (passoAtual > total) {
+        return; // condição de parada
+    }
+
+    // Loop externo: movimento vertical
+    for (int i = 0; i < 1; i++) { // 1 passo vertical
+        // Loop interno: movimento horizontal
+        for (int j = 0; j < 1; j++) { // 1 passo horizontal
+            printf("Cima, Direita (%d)\n", passoAtual);
+        }
+    }
+
+    moverBispo(passoAtual + 1, total); // chamada recursiva
+}
+
+// ================================
+// Função recursiva: RAINHA
+// ================================
+// A Rainha pode se mover em todas as direções.
+// Aqui, simulamos 8 casas para a esquerda.
+void moverRainha(int passo, int total) {
+    if (passo > total) {
+        return; // condição de parada
+    }
+    printf("Esquerda (%d)\n", passo);
+    moverRainha(passo + 1, total);
+}
+
+// ================================
+// Loops complexos: CAVALO
+// ================================
+// O Cavalo move-se em "L": duas casas para cima e uma para a direita.
+// Usamos loops aninhados com múltiplas variáveis e controle de fluxo.
+void moverCavalo() {
+    int movimentoVertical = 2;  // duas casas para cima
+    int movimentoHorizontal = 1; // uma casa para a direita
+
+    printf("Movimento do CAVALO:\n");
+
+    // Loop externo: movimento vertical
+    for (int i = 1; i <= movimentoVertical; i++) {
+        if (i == 2) {
+            // Exemplo de uso do continue: pular alguma lógica específica
+            continue; // apenas mostra que o cavalo faz o segundo salto rapidamente
+        }
+        printf("Cima (%d)\n", i);
+    }
+
+    // Loop interno: movimento horizontal
+    int j = 1;
+    while (j <= movimentoHorizontal) {
+        if (j > movimentoHorizontal) {
+            break; // controle de fluxo com break
+        }
+        printf("Direita (%d)\n", j);
+        j++;
+    }
+
+    printf("\n");
+}
+
+// ================================
+// Função principal (main)
+// ================================
+int main() {
+    // =======================
+    // TORRE (recursiva)
+    // =======================
+    printf("Movimento da TORRE:\n");
+    moverTorre(1, 5);
+    printf("\n");
+
+    // =======================
+    // BISPO (recursiva + loops aninhados)
+    // =======================
+    printf("Movimento do BISPO:\n");
+    moverBispo(1, 5);
+    printf("\n");
+
+    // =======================
+    // RAINHA (recursiva)
+    // =======================
+    printf("Movimento da RAINHA:\n");
+    moverRainha(1, 8);
+    printf("\n");
+
+    // =======================
+    // CAVALO (loops complexos)
+    // =======================
+    moverCavalo();
+
+    printf("Simulação concluída!\n");
+    return 0;
+}
